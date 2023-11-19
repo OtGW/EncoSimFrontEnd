@@ -1,20 +1,27 @@
 import React from "react"
-import { AppShell, Burger, Grid } from "@mantine/core"
-import { useDisclosure } from "@mantine/hooks"
+import { AppShell, Grid } from "@mantine/core"
 import Header from "./Header"
 import Footer from "./Footer"
 import SideNav from "./SideNav"
 import SimBody from "./SimBody"
-// import "./Styles.css"
 
-const Layout = ({ state }) => {
-  const [opened, { toggle }] = useDisclosure()
-
+const Layout = () => {
   return (
-    <AppShell header={<Header />} footer={<Footer />} navbar={<SideNav />}>
+    <AppShell header={<Header />} footer={<Footer />} navbar={<SideNav />} padding="md">
       <Grid justify="center">
         <Grid.Col sm={12} md={8} lg={6} xl={6}>
-          <SimBody />
+          <AppShell.Header>
+            <Header />
+          </AppShell.Header>
+          <AppShell.Navbar>
+            <SideNav />
+          </AppShell.Navbar>
+          <AppShell.Main>
+            <SimBody />
+          </AppShell.Main>
+          <AppShell.Footer>
+            <Footer />
+          </AppShell.Footer>
         </Grid.Col>
       </Grid>
     </AppShell>
