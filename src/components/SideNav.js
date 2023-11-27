@@ -1,5 +1,5 @@
 import React from "react"
-import { AppShellNavbar } from "@mantine/core"
+import { AppShellNavbar, List } from "@mantine/core"
 import { Burger } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
 import { Drawer, Button } from "@mantine/core"
@@ -34,6 +34,13 @@ const SideNav = () => {
         size="xs"
         transitionProps={{ transition: "scale-x", duration: 150, timingFunction: "linear" }}
       >
+        <List>
+          <List.Item>Tutorial</List.Item>
+          <List.Item>About</List.Item>
+          <List.Item>Links</List.Item>
+          <List.Item>Go Premium</List.Item>
+          <List.Item>Tip Jar</List.Item>
+        </List>
         {/* <AppShellNavbar style={navbarStyle} width={{ base: 300 }}>
           This should appear in the Drawer please
         </AppShellNavbar> */}
