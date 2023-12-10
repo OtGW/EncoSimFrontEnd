@@ -6,12 +6,15 @@ const Header = () => {
     <div className="head">
       <Image
         src="image dump\EncoSim logo 1.png"
-        style={{ fill: 1, height: "100%" }}
+        // style={{ fill: 1, height: "100%" }}
         // mah={"100%"}
-        // w="auto"
-        fit="contain"
+        w="auto"
+        h="40"
+        pl="30"
+        // fit="contain"
         alt="EncoSim logo"
         fallbackSrc="https://placehold.jp/80x80.png"
+        // mantine-scale={1}
       ></Image>
     </div>
   )

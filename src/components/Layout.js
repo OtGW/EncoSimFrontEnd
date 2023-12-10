@@ -7,7 +7,7 @@ import SimBody from "./SimBody"
 
 const Layout = () => {
   return (
-    <AppShell header={{ height: { base: 60, md: 70, lg: 80 } }} padding="md">
+    <AppShell /*header={{ height: { base: 60, md: 70, lg: 80 } }}*/ padding="md">
       <Grid justify="center">
         <Grid.Col sm={12} md={8} lg={6} xl={6}>
           <AppShell.Header>
