@@ -2,7 +2,7 @@ import React from "react"
 import { AppShellNavbar, List } from "@mantine/core"
 import { Burger } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
-import { Drawer, Button } from "@mantine/core"
+import { Drawer } from "@mantine/core"
 
 const SideNav = () => {
   const [opened, { open, close }] = useDisclosure(false)
