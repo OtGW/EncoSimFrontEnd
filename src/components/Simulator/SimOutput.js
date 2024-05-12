@@ -1,10 +1,11 @@
 import React from "react"
+import { Title } from "@mantine/core"
 
 const SimOutput = () => {
   return (
-    <div>
-      <h1>Sim runtime output happens here</h1>
-    </div>
+    <>
+      <Title order={1}>Sim runtime output happens here</Title>
+    </>
   )
 }
 

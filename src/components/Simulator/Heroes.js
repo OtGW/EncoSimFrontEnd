@@ -1,11 +1,12 @@
 import React from "react"
+import { Button } from "@mantine/core"
 
 const Heroes = () => {
   return (
-    <div>
-      <button>Hero button</button>
-      <button>+</button>
-    </div>
+    <>
+      <Button>Hero button</Button>
+      <Button>+</Button>
+    </>
   )
 }
 
