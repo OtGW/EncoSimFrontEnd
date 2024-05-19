@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { TransferList, createStyles } from "@mantine/core"
-import { AuthContext } from "../../hooks/Firebase"
+// import { AuthContext } from "../../hooks/Firebase"
 import { database, useAuthState } from "../../hooks/Firebase"
 import { ref, onValue } from "firebase/database"
 
@@ -62,15 +62,21 @@ function Combatants() {
   useEffect(() => {
     // Check if user is authenticated and data is available
     if (user && !data) {
+      console.log(user)
+      console.log(data)
+      console.log(database)
       const combatantsRef = ref(database, "/Combatants")
       const unsubscribe = onValue(combatantsRef, (snapshot) => {
         const fetchedData = snapshot.val()
+        console.log(fetchedData)
         if (fetchedData) {
           const availableCombatants = Object.entries(fetchedData).map(([key, value]) => ({
             value: value, // Store the entire combatant object as the value
-            label: key, // Use the key (name of the combatant) as the label
+            label: value.name, // Use the name property as the label
             group: value.Hero_or_Villain === 0 ? "Heroes" : "Enemies", // Classify into groups
           }))
+          console.log(availableCombatants)
+
           setCombatantsData([availableCombatants, []])
         }
       })

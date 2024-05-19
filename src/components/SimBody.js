@@ -4,8 +4,8 @@ import Monsters from "./Simulator/Monsters"
 import SimOutput from "./Simulator/SimOutput"
 import SimParams from "./Simulator/SimParams"
 import ExpandSimButton from "./Simulator/ExpandSimButton"
-import Combatants from "./Simulator/Combatants"
-// import CombatantsDB from "./Simulator/CombatantsDB"
+// import Combatants from "./Simulator/Combatants"
+import CombatantsDB from "./Simulator/CombatantsDB"
 import {
   createStyles,
   Container,
@@ -33,8 +33,8 @@ const SimBody = () => {
     <Center className={classes.section}>
       <Stack spacing="xl" justify="space-around">
         <Title>Combatants:</Title>
-        <Combatants />
-        {/* <CombatantsDB /> */}
+        {/* <Combatants /> */}
+        <CombatantsDB />
         <Space h="md" />
         {/* <Heroes />
       <Monsters /> */}

@@ -18,7 +18,7 @@ import { useForm } from "@mantine/form"
 function NewCombatantModal({ opened, setOpened }) {
   const form = useForm({
     initialValues: {
-      characterName: "",
+      name: "",
       ac: 10,
       hp: 10,
       proficiency: 2,
@@ -44,7 +44,7 @@ function NewCombatantModal({ opened, setOpened }) {
       otherAbilities: "",
     },
     validate: {
-      characterName: (value) => (value ? null : "Character name is required"),
+      name: (value) => (value ? null : "Character name is required"),
       ac: (value) => (value > 0 ? null : "Armor Class must be greater than 0"),
       // Add other validations here
     },
@@ -68,7 +68,7 @@ function NewCombatantModal({ opened, setOpened }) {
           required
           label="Combatant Name"
           placeholder="Enter combatant name"
-          {...form.getInputProps("characterName")}
+          {...form.getInputProps("name")}
         />
         <SimpleGrid cols={4} spacing="lg">
           <Card shadow="md" padding="md">

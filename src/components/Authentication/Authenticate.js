@@ -26,6 +26,59 @@ const Authenticate = () => {
     },
   })
 
+  // const submitForm = async (values) => {
+  //   setSubmitted(true)
+  //   fetchSignInMethodsForEmail(auth, values.email)
+  //     .then(async (methods) => {
+  //       if (methods.length > 0) {
+  //         // If the email is already used for signing up (e.g., password method exists)
+  //         if (methods.includes("password")) {
+  //           try {
+  //             const userCredential = await signInWithEmailAndPassword(
+  //               auth,
+  //               values.email,
+  //               values.password
+  //             )
+  //             setSubmitted(false)
+  //             // Handle successful sign-in here (if needed)
+  //           } catch (err) {
+  //             setSubmitted(false)
+  //             // More specific error handling based on the error code
+  //             if (err.code === "auth/wrong-password") {
+  //               setError("Incorrect password. Please try again.")
+  //             } else {
+  //               setError("Login failed. Please try again.")
+  //             }
+  //           }
+  //         } else {
+  //           // Handle other methods or inform user about the available methods
+  //           setError(
+  //             "This email is registered but not with a password. Did you use a different sign-in method?"
+  //           )
+  //           setSubmitted(false)
+  //         }
+  //       } else {
+  //         // No user is registered with this email, create a new account
+  //         try {
+  //           const newUser = await createUserWithEmailAndPassword(
+  //             auth,
+  //             values.email,
+  //             values.password
+  //           )
+  //           setSubmitted(false)
+  //           // Handle new user creation here (if needed)
+  //         } catch (err) {
+  //           setSubmitted(false)
+  //           setError(err.message) // Optionally, refine these messages too
+  //         }
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       setSubmitted(false)
+  //       setError("Failed to check existing sign-in methods. Please try again.")
+  //     })
+  // }
+
   const submitForm = async (values) => {
     setSubmitted(true)
     fetchSignInMethodsForEmail(auth, values.email).then(async (value) => {
