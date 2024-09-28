@@ -1,15 +1,6 @@
 import React from "react"
 import { useState, useRef } from "react"
-import {
-  Button,
-  Text,
-  TextInput,
-  NumberInput,
-  createStyles,
-  Flex,
-  Container,
-  Tooltip,
-} from "@mantine/core"
+import { Button, NumberInput, createStyles, Flex, Container, Tooltip } from "@mantine/core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faDiceD20,
@@ -19,6 +10,7 @@ import {
   faScroll,
 } from "@fortawesome/free-solid-svg-icons"
 import NewCombatantModal from "./NewCombatantModal"
+import { usePyScriptRunner } from "../../hooks/PyScriptRunner"
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -38,48 +30,41 @@ const useStyles = createStyles((theme) => ({
 
 const SimParams = ({ styles }) => {
   const { classes } = useStyles()
-  const [value, setValue] = useState("")
+  const [repetitions, setRepetitions] = useState("")
   const ref = useRef(null)
   const [printTurnData, setPrintTurnData] = useState(false)
   const [newCharOpened, setNewCharOpened] = useState(false)
 
+  const { runPyScriptSimulation } = usePyScriptRunner() // Use custom hook to get the simulation function
+
+  const runSimulation = () => {
+    // Call the PyScriptRunner with repetitions and printTurnData
+    runPyScriptSimulation(repetitions, printTurnData)
+  }
+
   return (
-    // <>
-    <div
-      style={{ styles }}
-      // style={{
-      //   maxWidth: rem(200),
-      //   position: "relative",
-      //   display: "flex",
-      //   justifyContent: "center",
-      //   margin: "auto",
-      // }}
-    >
+    <div style={{ styles }}>
       <Flex mt="xs" gap="md" justify="center" align="center" direction="row" wrap="wrap">
         <Tooltip
           withArrow
-          label="Feel free to play around! Save your changes for next time by logging in."
-        >
+          label="Feel free to play around! Save your changes for next time by logging in.">
           <Button
             className={classes.button}
             leftIcon={<FontAwesomeIcon icon={faHandFist} size="xl" />}
-            onClick={() => setNewCharOpened(true)}
-          >
+            onClick={() => setNewCharOpened(true)}>
             New Combatant
           </Button>
         </Tooltip>
         <Tooltip withArrow label="Recommended for advanced users only">
           <Button
             className={classes.button}
-            leftIcon={<FontAwesomeIcon icon={faDiceD20} size="xl" />}
-          >
+            leftIcon={<FontAwesomeIcon icon={faDiceD20} size="xl" />}>
             DM Mode
           </Button>
         </Tooltip>
         <Tooltip
           withArrow
-          label="Adds a random selection of heroes and enemies to the staging ground, then runs the simulator."
-        >
+          label="Adds a random selection of heroes and enemies to the staging ground, then runs the simulator.">
           <Button className={classes.button} leftIcon={<FontAwesomeIcon icon={faDice} size="xl" />}>
             Try Me! [Randomize]
           </Button>
@@ -91,10 +76,9 @@ const SimParams = ({ styles }) => {
           placeholder="Input # of Simulator Repetitions"
           label="Repetitions:"
           withAsterisk
-          value={value}
-          onChange={(event) => setValue(event.currentTarget.value)}
+          value={repetitions}
+          onChange={(event) => setRepetitions(event.currentTarget.value)} //this might need to be currentTarget.repetitions
           ref={ref}
-          // icon={<IconAt size="0.8rem" />}
         />
       </Container>
 
@@ -109,33 +93,28 @@ const SimParams = ({ styles }) => {
            entered above. A summary screen will then display the results averaged 
            across each battle, including metrics on each combatant's performance 
            and insights on encounter difficulty, to help you balance (or unbalance - do you) your encounters at 
-           the table. This simulation uses the official rules of your chosen turn-based tabletop game."
-        >
+           the table. This simulation uses the official rules of your chosen turn-based tabletop game.">
           <Button
+            onClick={runSimulation}
             className={classes.button}
-            leftIcon={<FontAwesomeIcon icon={faDungeon} size="xl" />}
-          >
+            leftIcon={<FontAwesomeIcon icon={faDungeon} size="xl" />}>
             Run Simulator
           </Button>
         </Tooltip>
         <Tooltip
           position="bottom"
           withArrow
-          label="Warning: if you set more than a few repetitions this file will be extremely long!"
-        >
+          label="Warning: if you set more than a few repetitions this file will be extremely long!">
           <Button
             onClick={() => setPrintTurnData((print) => !print)}
             className={`${classes.button} ${printTurnData ? "selected" : ""}`}
-            leftIcon={<FontAwesomeIcon icon={faScroll} size="xl" />}
-            // variant={printTurnData ? "white" : "default"}
-          >
+            leftIcon={<FontAwesomeIcon icon={faScroll} size="xl" />}>
             Print Turn-By-Turn Data
           </Button>
         </Tooltip>
       </Flex>
       <NewCombatantModal opened={newCharOpened} setOpened={setNewCharOpened} />
     </div>
-    // </>
   )
 }
 
