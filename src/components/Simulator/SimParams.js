@@ -134,6 +134,8 @@ const SimParams = ({ styles }) => {
         </Tooltip>
       </Flex>
       <NewCombatantModal opened={newCharOpened} setOpened={setNewCharOpened} />
+      <script type="py" src="Simulator.py"></script>
+      <script type="py" src="main.py">from Simulator import *</script>
     </div>
     // </>
   )
